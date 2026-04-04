@@ -1,0 +1,3 @@
+{
+  "case_file": "Coordinated attack pattern identified. 7 distinct user accounts initiated high-value transfers to merchant M006 within 90-second window. Cross-user velocity breach and synchronized timing indicate botnet or compromised credential set. Enhanced monitoring of merchant M006 advised."
+}

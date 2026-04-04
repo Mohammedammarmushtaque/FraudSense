@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+scikit-learn
+xgboost
+imbalanced-learn
+joblib
+google-generativeai
+pandas
+numpy
+python-dotenv
+geopy
+httpx

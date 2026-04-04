@@ -1,0 +1,3 @@
+{
+  "case_file": "Sophisticated mimicry attack. Transaction amount (₹2,487) and timing (14:32) closely match user's historical baseline, but device timezone mismatch (GMT vs Asia/Kolkata) suggests VPN obfuscation. Merchant M006 is first-time payee. Behavioral camouflage detected, MFA verification required."
+}
