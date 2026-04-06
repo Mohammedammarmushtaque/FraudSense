@@ -1,83 +1,107 @@
-# 🛡️ FraudSense: Real-Time Fraud Detection System
+<h1>🛡️ FraudSense: Real-Time Fraud Detection System</h1>
 
-**FraudSense** is a high-performance, multi-layered fraud detection pipeline designed to identify and block sophisticated financial fraud patterns in real-time. By combining rule-based engines, predictive machine learning, and Generative AI for explainability, FraudSense provides a production-grade defense against ATO (Account Takeover), Coordinated Ring Attacks, and Social Engineering scams.
+<p>
+<b>FraudSense</b> is a high-performance, multi-layered fraud detection system designed to identify and block sophisticated financial fraud patterns in real-time.
+</p>
 
-🏆 **HackUp 2026:** Selected in the **Top 45 teams** out of 5,000+ applicants.
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/6fd47ebd-536b-4465-bf79-4724c6e51835" />
 
----
+<p>
+Built using a hybrid approach of rule-based intelligence, behavioral profiling, and machine learning, the system focuses on detecting high-risk activities such as Account Takeovers (ATO), coordinated fraud rings, and abnormal transaction behavior.
+</p>
 
-## 🚀 Core Features
+<p>
+🏆 <b>HackUp 2026:</b> Selected in the <b>Top 45 teams</b> out of 200 teams.
+</p>
 
-- **🛡️ 6-Layer Risk Engine:** Evaluates transactions across Location, Device, Behavioral Profile, ML Probability, Network Graphs, and Chain-State.
-- **📈 Dominant Signal Scoring:** Uses a custom non-averaging logic $FinalScore = (0.7 \times MaxLayer) + (0.3 \times WeightedAvg)$ to ensure high-risk signals are never "averaged down."
-- **🤖 GenAI Explainability:** Integrated with Google Gemini (and local Ollama fallback) to generate human-readable investigation reports for every flagged transaction.
-- **🔄 Adaptive Learning Loop:** Automatically recalibrates layer weights based on historical analyst feedback to stay ahead of evolving fraud tactics.
-- **⚡ Real-Time Graph Intelligence:** Detects circular money laundering flows and coordinated merchant targeting via NetworkX graph analysis.
+<hr>
 
----
+<h2>🚀 Core Features</h2>
 
-## 🏗️ Architecture
+<h3>🛡️ 6-Layer Risk Engine</h3>
+<ul>
+<li>Location anomalies</li>
+<li>Device trust</li>
+<li>Behavioral patterns</li>
+<li>ML-based probability</li>
+<li>Network graph connections</li>
+<li>Transaction chain patterns</li>
+</ul>
 
-FraudSense is built on a modern, asynchronous architecture designed for sub-300ms latency:
+<h3>📈 Dominant Signal Scoring</h3>
+<p>Custom scoring logic ensures high-risk signals are never diluted:</p>
+<pre>
+FinalScore = (0.7 × MaxLayer) + (0.3 × WeightedAvg)
+</pre>
 
-- **Backend:** FastAPI (Python) for asynchronous request handling.
-- **Frontend:** React + Vite with Framer Motion for a high-fidelity "Command Center" dashboard.
-- **Engine:** Hybrid approach (Deterministic Rules + Random Forest/XGBoost).
-- **Persistence:** SQLite with persistent caching for millisecond user profile lookups.
-- **Background Tasks:** Adaptive retraining and AI report generation run asynchronously to prevent blocking the transaction flow.
+<h3>🔄 Adaptive Risk Logic</h3>
+<p>
+Dynamically adjusts risk sensitivity based on observed transaction patterns and system feedback.
+</p>
 
----
+<h3>⚡ Graph-Based Fraud Detection</h3>
+<p>
+Detects circular money flows and coordinated attacks using NetworkX graph analysis.
+</p>
 
-## 📂 Project Structure
+<h3>🧠 Hybrid Intelligence System</h3>
+<p>
+Combines deterministic rules with ML models (Random Forest / XGBoost) for robust detection.
+</p>
 
-```text
-backend/          # API, Services (Risk Engine, Behavioral, Graph)
-frontend/         # React Dashboard (Vite)
-models/           # Pre-trained ML models (.pkl)
-main.py           # Application Entry Point
-requirements.txt  # Project Dependencies
-README.md         # Professional Documentation
-```
+<hr>
 
----
+<h2>🏗️ Architecture</h2>
 
-## 🛠️ Setup & Installation
+<ul>
+<li><b>Backend:</b> FastAPI (Python)</li>
+<li><b>Frontend:</b> React + Vite (Command Center Dashboard)</li>
+<li><b>ML Engine:</b> Scikit-learn (Random Forest / XGBoost)</li>
+<li><b>Graph Engine:</b> NetworkX</li>
+<li><b>Database:</b> SQLite</li>
+</ul>
 
-### 1. Backend (Python 3.9+)
-Install dependencies and run the server:
-```bash
-# Install dependencies
+<hr>
+
+<h2>📂 Project Structure</h2>
+
+<pre>
+backend/          # Risk Engine, Services, Graph Logic
+frontend/         # React Dashboard
+models/           # Trained ML models (.pkl)
+main.py           # Entry point
+requirements.txt  # Dependencies
+README.md         # Documentation
+</pre>
+
+<hr>
+
+<h2>🛠️ Setup & Installation</h2>
+
+<h3>1. Backend</h3>
+<pre>
 pip install -r requirements.txt
-
-# Start the API (on http://localhost:8000)
 uvicorn main:app --reload --port 8000
-```
+</pre>
 
-### 2. Frontend (React/Vite)
-Build and run the dashboard:
-```bash
+<h3>2. Frontend</h3>
+<pre>
 cd frontend
 npm install
 npm run dev
-```
+</pre>
 
-### 🔧 Configuration
-Create a `.env` file in the root if you wish to use GenAI features:
-```text
-GEMINI_API_KEY=your_key_here
-```
-*Note: If no API key is provided, the system falls back to a mock AI generator or local Ollama instance.*
+<hr>
 
----
+<h2>📡 API Endpoint</h2>
 
-## 📡 API Endpoints
+<h3>💳 Process Transaction</h3>
+<p><b>POST /api/transaction</b></p>
 
-### 💳 Process Transaction
-`POST /api/transaction`
-Primary endpoint for real-time risk assessment.
+<p>Evaluates a transaction and returns a fraud risk decision.</p>
 
-**Sample Request Body:**
-```json
+<h4>Sample Input</h4>
+<pre>
 {
   "tx_id": "TX-9901",
   "user_id": "user_1001",
@@ -87,30 +111,52 @@ Primary endpoint for real-time risk assessment.
   "tx_type": "TRANSFER",
   "channel": "mobile"
 }
-```
+</pre>
 
-**Response:**
-```json
+<h4>Sample Response</h4>
+<pre>
 {
   "status": "success",
   "decision": "APPROVE",
-  "risk_score": 12,
-  "case_file": "..."
+  "risk_score": 12
 }
-```
+</pre>
 
----
+<hr>
 
-## 🧠 ML Model Generation
-If `models/fraud_model.pkl` is missing, you can regenerate the synthetic data and retrain the model by running:
-```bash
+<h2>🧠 Model Training</h2>
+
+<p>To retrain the fraud detection model:</p>
+
+<pre>
 python train_models.py
-```
+</pre>
 
----
+<hr>
 
-## 📊 Dashboard Interface (localhost:3000)
-The **FraudSense Command Center** provides a mission-critical view of system health, real-time transaction bursts, and adaptive weight tuning.
+<h2>📊 Dashboard</h2>
 
----
-© 2026 FraudSense Team | Developed for HackUp 2026.
+<p>The <b>FraudSense Command Center</b> provides:</p>
+<ul>
+<li>Real-time transaction monitoring</li>
+<li>Risk score visualization</li>
+<li>Fraud pattern tracking</li>
+<li>System performance insights</li>
+</ul>
+
+<p>Runs locally via Vite after frontend setup.</p>
+
+<hr>
+
+<h2>🎯 Key Highlights</h2>
+
+<ul>
+<li>Designed for real-time fraud detection use cases</li>
+<li>Strong focus on system design and scoring logic</li>
+<li>Built during a competitive hackathon environment</li>
+<li>Clean modular architecture for scalability</li>
+</ul>
+
+<hr>
+
+<p>© 2026 FraudSense Team</p>
