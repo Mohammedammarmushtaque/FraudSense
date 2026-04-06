@@ -23,8 +23,8 @@ from pydantic import BaseModel
 from backend.db.database import initialize_database, get_db_connection
 from backend.services.graph_service import GraphService
 from backend.api.transaction import router as transaction_router, process_transaction, TransactionRequest
-import llm_case_file
-from retrain import RetrainWorker
+from backend.services import llm_case_file
+from backend.services.retrain import RetrainWorker
 
 
 # ============================================================================
@@ -74,7 +74,8 @@ async def lifespan(app: FastAPI):
     _db.close()
 
     # Start the adaptive retraining daemon
-    worker = RetrainWorker("fraudsense.db")
+    from backend.db.database import DB_NAME
+    worker = RetrainWorker(DB_NAME)
     worker.start()
     app.state.retrain_worker = worker
 
@@ -107,11 +108,14 @@ app.add_middleware(
 
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-app.mount("/static", StaticFiles(directory="frontend"), name="static")
+# Choose dist if it exists, else root for Dev
+FRONTEND_DIR = "frontend/dist" if os.path.exists("frontend/dist") else "frontend"
+
+app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
 
 @app.get("/")
 def serve_index():
-    return FileResponse("frontend/index.html")
+    return FileResponse(f"{FRONTEND_DIR}/index.html")
 
 # ============================================================================
 # Shared singletons

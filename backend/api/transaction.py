@@ -18,7 +18,7 @@ from backend.services.risk_engine import RiskEngine
 from backend.services.decision_engine import DecisionEngine
 from backend.services.behavioral import record_transaction
 from backend.services.simulator import generate_batch, generate_single
-import llm_case_file
+from backend.services import llm_case_file
 
 router = APIRouter()
 

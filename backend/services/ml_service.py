@@ -55,8 +55,9 @@ model = None
 
 def train_model():
     """Run the training pipeline to create a fresh model file."""
-    print("⚙ Training model via train_models.py ...")
-    subprocess.run([sys.executable, "train_models.py"], check=True)
+    print("⚙ Training model via backend/scripts/train_models.py ...")
+    script_path = os.path.join("backend", "scripts", "train_models.py")
+    subprocess.run([sys.executable, script_path], check=True)
     print("✅ Training complete.")
 
 

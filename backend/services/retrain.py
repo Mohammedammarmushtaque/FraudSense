@@ -266,9 +266,9 @@ class RetrainWorker(threading.Thread):
 
         # ---- 1. Load base dataset --------------------------------------
         try:
-            original_data = pd.read_csv("data/paysim_processed.csv")
+            original_data = pd.read_csv("backend/db/data.csv")
         except FileNotFoundError:
-            print("❌ data/paysim_processed.csv not found — aborting retrain")
+            print("❌ backend/db/data.csv not found — aborting retrain")
             return
 
         # ---- 2. Load confirmed fraud from buffer -----------------------
