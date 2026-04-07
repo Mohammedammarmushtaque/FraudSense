@@ -159,4 +159,33 @@ python train_models.py
 
 <hr>
 
+<hr>
+
+<h2>🤝 Contributing</h2>
+
+<p>
+I would like to welcome contributions to improve FraudSense 🚀
+</p>
+
+<ul>
+<li>Fix bugs or improve performance</li>
+<li>Add new fraud detection features</li>
+<li>Enhance UI/UX of the dashboard</li>
+<li>Improve documentation</li>
+</ul>
+
+<h3>📌 How to Contribute</h3>
+
+<ol>
+<li>Fork the repository</li>
+<li>Create a new branch (<code>feature/your-feature-name</code>)</li>
+<li>Make your changes</li>
+<li>Commit and push</li>
+<li>Open a Pull Request</li>
+</ol>
+
+<p>
+For major changes, please open an issue first to discuss what you would like to change.
+</p>
+
 <p>© 2026 FraudSense Team</p>
